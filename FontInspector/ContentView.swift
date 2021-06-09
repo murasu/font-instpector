@@ -15,7 +15,7 @@ class MyObject: ObservableObject {
 struct ContentView: View {
     @Environment(\.openURL) var openURL
     @EnvironmentObject var myObject: MyObject
-    @Binding var document: TwoWindowDocumentAppDocument
+    @Binding var document: FontInspectorAppDocument
 
     var body: some View {
         VStack {
@@ -139,6 +139,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(document: .constant(TwoWindowDocumentAppDocument()))
+        ContentView(document: .constant(FontInspectorAppDocument()))
     }
 }

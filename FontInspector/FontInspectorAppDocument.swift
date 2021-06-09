@@ -1,6 +1,6 @@
 //
-//  TwoWindowDocumentAppDocument.swift
-//  TwoWindowDocumentApp
+//  FontInspectorAppDocument.swift
+//  FontInspectorApp
 //
 //  Created by Muthu Nedumaran on 23/4/21.
 //
@@ -19,7 +19,7 @@ struct MyProjectData: Codable {
     var myFilename  = ""
 }
 
-struct TwoWindowDocumentAppDocument: FileDocument, Codable {
+struct FontInspectorAppDocument: FileDocument, Codable {
     var projectData: MyProjectData
 
     init(p: MyProjectData = MyProjectData()) {

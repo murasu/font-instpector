@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		004546FE2632987F00601DB6 /* TwoWindowDocumentAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004546FD2632987F00601DB6 /* TwoWindowDocumentAppApp.swift */; };
-		004547002632987F00601DB6 /* TwoWindowDocumentAppDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004546FF2632987F00601DB6 /* TwoWindowDocumentAppDocument.swift */; };
+		004546FE2632987F00601DB6 /* FontInspectorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004546FD2632987F00601DB6 /* FontInspectorApp.swift */; };
+		004547002632987F00601DB6 /* FontInspectorAppDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004546FF2632987F00601DB6 /* FontInspectorAppDocument.swift */; };
 		004547042632988200601DB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 004547032632988200601DB6 /* Assets.xcassets */; };
 		004547072632988200601DB6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 004547062632988200601DB6 /* Preview Assets.xcassets */; };
 		004547192632A88500601DB6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004547012632987F00601DB6 /* ContentView.swift */; };
@@ -20,8 +20,8 @@
 
 /* Begin PBXFileReference section */
 		004546FB2632987F00601DB6 /* FontInspector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FontInspector.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		004546FD2632987F00601DB6 /* TwoWindowDocumentAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoWindowDocumentAppApp.swift; sourceTree = "<group>"; };
-		004546FF2632987F00601DB6 /* TwoWindowDocumentAppDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoWindowDocumentAppDocument.swift; sourceTree = "<group>"; };
+		004546FD2632987F00601DB6 /* FontInspectorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontInspectorApp.swift; sourceTree = "<group>"; };
+		004546FF2632987F00601DB6 /* FontInspectorAppDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontInspectorAppDocument.swift; sourceTree = "<group>"; };
 		004547012632987F00601DB6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		004547032632988200601DB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		004547062632988200601DB6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -48,8 +48,8 @@
 			isa = PBXGroup;
 			children = (
 				008A6E402670E11B0018179E /* Font */,
-				004546FD2632987F00601DB6 /* TwoWindowDocumentAppApp.swift */,
-				004546FF2632987F00601DB6 /* TwoWindowDocumentAppDocument.swift */,
+				004546FD2632987F00601DB6 /* FontInspectorApp.swift */,
+				004546FF2632987F00601DB6 /* FontInspectorAppDocument.swift */,
 				004547012632987F00601DB6 /* ContentView.swift */,
 				004547032632988200601DB6 /* Assets.xcassets */,
 				004547082632988200601DB6 /* Info.plist */,
@@ -165,11 +165,11 @@
 			files = (
 				008A6E442670E1760018179E /* Hibizcus.swift in Sources */,
 				008A6E462670E2070018179E /* FontMetrics.swift in Sources */,
-				004547002632987F00601DB6 /* TwoWindowDocumentAppDocument.swift in Sources */,
+				004547002632987F00601DB6 /* FontInspectorAppDocument.swift in Sources */,
 				008A6E422670E13D0018179E /* HBFont.swift in Sources */,
 				0045471F2632A94100601DB6 /* SecondView.swift in Sources */,
 				004547192632A88500601DB6 /* ContentView.swift in Sources */,
-				004546FE2632987F00601DB6 /* TwoWindowDocumentAppApp.swift in Sources */,
+				004546FE2632987F00601DB6 /* FontInspectorApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

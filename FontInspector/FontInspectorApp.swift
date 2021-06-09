@@ -1,6 +1,6 @@
 //
-//  TwoWindowDocumentAppApp.swift
-//  TwoWindowDocumentApp
+//  FontInspectorApp.swift
+//  FontInspectorApp
 //
 //  Created by Muthu Nedumaran on 23/4/21.
 //
@@ -8,12 +8,12 @@
 import SwiftUI
 
 @main
-struct TwoWindowDocumentAppApp: App {
+struct FontInspectorApp: App {
 
     @StateObject var myObject = MyObject()
 
     var body: some Scene {
-        DocumentGroup(newDocument: TwoWindowDocumentAppDocument()) { file in
+        DocumentGroup(newDocument: FontInspectorAppDocument()) { file in
             ContentView(document: file.$document).environmentObject(myObject)
         }
         
