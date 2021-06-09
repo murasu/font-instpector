@@ -14,16 +14,15 @@ extension UTType {
     }
 }
 
-struct MyProjectData: Codable {
-    var myTitle     = ""
-    var myFilename  = ""
+struct FontInspectorProject: Codable {  // Document
+    var fontFile1Bookmark: Data?
 }
 
 struct FontInspectorAppDocument: FileDocument, Codable {
-    var projectData: MyProjectData
+    var fiProject: FontInspectorProject // Document
 
-    init(p: MyProjectData = MyProjectData()) {
-        self.projectData = p
+    init(p: FontInspectorProject = FontInspectorProject()) {
+        self.fiProject = p
     }
 
     static var readableContentTypes: [UTType] { [.myproject] }

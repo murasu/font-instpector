@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct SecondView: View {
-    @EnvironmentObject var myObject: MyObject
+    @EnvironmentObject var myObject: FIModel
     
     var body: some View {
         VStack {
+            /*
             Text("Second Window")
                 .font(.title)
                 .padding()
@@ -19,6 +20,7 @@ struct SecondView: View {
                 .padding()
             Text(myObject.filename)
                 .padding()
+ */
         }
         .padding()
     }

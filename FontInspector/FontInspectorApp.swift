@@ -10,15 +10,15 @@ import SwiftUI
 @main
 struct FontInspectorApp: App {
 
-    @StateObject var myObject = MyObject()
+    @StateObject var fiModel = FIModel()
 
     var body: some Scene {
         DocumentGroup(newDocument: FontInspectorAppDocument()) { file in
-            ContentView(document: file.$document).environmentObject(myObject)
+            ContentView(document: file.$document).environmentObject(fiModel)
         }
         
         WindowGroup("SecondWindow") {
-            SecondView().environmentObject(myObject)
+            SecondView().environmentObject(fiModel)
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: "secondview"))
     }

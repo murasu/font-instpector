@@ -7,29 +7,30 @@
 
 import SwiftUI
 
-class MyObject: ObservableObject {
-    @Published var title: String = "Change this!"
-    @Published var filename: String = "Default.txt"
+class FIModel: ObservableObject {
+    @Published var hbFont1 = HBFont(filePath: "", fontSize: 40)
 }
 
 struct ContentView: View {
     @Environment(\.openURL) var openURL
-    @EnvironmentObject var myObject: MyObject
+    @EnvironmentObject var fiModel: FIModel
     @Binding var document: FontInspectorAppDocument
 
     var body: some View {
         VStack {
-            TextField("", text: $myObject.title)
+            /*
+            TextField("", text: $fiModel.title)
                 .font(.title)
                 .padding()
-            TextField("", text: $myObject.filename)
+            TextField("", text: $fiModel.filename)
                 .font(.title)
                 .padding()
             Divider()
-            Text(myObject.title)
+            Text(fiModel.title)
                 .padding()
-            Text(myObject.filename)
+            Text(fiModel.filename)
                 .padding()
+             */
         }
         .padding()
         .toolbar {
@@ -44,7 +45,7 @@ struct ContentView: View {
             }
         }
     }
-    /*
+
     func performDrop(info: DropInfo) -> Bool {
         guard info.hasItemsConforming(to: ["public.file-url"]) else {
             return false
@@ -58,12 +59,10 @@ struct ContentView: View {
             let urlstring = url.absoluteString.lowercased()
             if urlstring.hasSuffix(".ttf") || urlstring.hasSuffix(".otf") || urlstring.hasSuffix(".ttc") {
                 DispatchQueue.main.async {
-                    if hbProject.hbFont1.fileUrl == nil {
-                        setHBFont(fromUrl: url, asMainFont: true)
-                    }
-                    else {
-                        setHBFont(fromUrl: url, asMainFont: false)
-                    }
+                    fiModel.hbFont1.fontSize = 40
+                    fiModel.hbFont1.setFontFile(filePath: url.path)
+                    // Save the bookmark in document for future use
+                    document.fiProject.fontFile1Bookmark = securityScopedBookmark(ofUrl: url)
                 }
             }
         }
@@ -71,6 +70,19 @@ struct ContentView: View {
         return true
     }
     
+    
+    func securityScopedBookmark(ofUrl: URL) -> Data {
+        // Create a security scoped bookmark so we can open this again in the future
+        let bookmarkData = try! ofUrl.bookmarkData(
+            options: .withSecurityScope,
+            includingResourceValuesForKeys: nil,
+            relativeTo: nil
+        )
+        return bookmarkData
+    }
+    
+    
+    /*
     func refreshGlyphsInFonts() {
         print("Refreshing items in Font tab")
         hbGridItems.removeAll()
