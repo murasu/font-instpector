@@ -29,6 +29,7 @@
 		0094A1972670FF0100DD4AB3 /* BinarySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0094A17C2670FD2000DD4AB3 /* BinarySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0094A19B2671035200DD4AB3 /* HBGridCellViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094A19A2671035200DD4AB3 /* HBGridCellViewRepresentable.swift */; };
 		0094A19D2671037400DD4AB3 /* HBGridCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094A19C2671037400DD4AB3 /* HBGridCellView.swift */; };
+		0094A19F267105A100DD4AB3 /* HBFontData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094A19E267105A100DD4AB3 /* HBFontData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -304,6 +305,7 @@
 		0094A1942670FE0700DD4AB3 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		0094A19A2671035200DD4AB3 /* HBGridCellViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridCellViewRepresentable.swift; sourceTree = "<group>"; };
 		0094A19C2671037400DD4AB3 /* HBGridCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridCellView.swift; sourceTree = "<group>"; };
+		0094A19E267105A100DD4AB3 /* HBFontData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBFontData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,6 +353,7 @@
 				008A6E412670E13D0018179E /* HBFont.swift */,
 				008A6E432670E1760018179E /* Hibizcus.swift */,
 				008A6E452670E2070018179E /* FontMetrics.swift */,
+				0094A19E267105A100DD4AB3 /* HBFontData.swift */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -805,6 +808,7 @@
 				0094A1822670FD2000DD4AB3 /* HibizcusCppBridge.mm in Sources */,
 				0094A19B2671035200DD4AB3 /* HBGridCellViewRepresentable.swift in Sources */,
 				004547192632A88500601DB6 /* ContentView.swift in Sources */,
+				0094A19F267105A100DD4AB3 /* HBFontData.swift in Sources */,
 				004546FE2632987F00601DB6 /* FontInspectorApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

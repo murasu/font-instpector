@@ -122,7 +122,7 @@ class HBFont: ObservableObject {
     
     // TODO: Call the C function directly instead of going through a ObjC++/C++ bridge
     // Used only by the hb shaper
-    private var bridge = HibizcusCppBridge()
+    // private var bridge = HibizcusCppBridge()
     
     // Init with filename
     init(filePath:String, fontSize:Int) {
@@ -134,17 +134,6 @@ class HBFont: ObservableObject {
         self.fontSize = fontSize
         createCTFont()
         extractFontInfo()
-        /*
-        fileWatcher.stopWatchingForChanges()
-        if filePath.count > 0 {
-            fileWatcher.watchForChangesInFileAtUrl(fileUrl: URL(fileURLWithPath: filePath))
-        }
-        
-        // Notify change when fileWatcher, which is a nested ObservableObject, changes
-        anyCancellable = fileWatcher.objectWillChange.sink { [weak self] (_) in
-            print("fileWatcher: sending objectWillChange for file \(self!.fileUrl!)")
-            self?.objectWillChange.send()
-        } */
     }
     
     // Init with scoped bookmark and watch for changes
@@ -169,10 +158,6 @@ class HBFont: ObservableObject {
                     displayName = CTFontCopyDisplayName(ctFont!) as String
                     version = CTFontCopyName(ctFont!, kCTFontVersionNameKey)! as String
                 }
-                /*
-                fileWatcher.stopWatchingForChanges()
-                fileWatcher.watchForChangesInFileAtUrl(fileUrl: fileUrl!)
- */
             }
         }
         catch {
@@ -202,19 +187,9 @@ class HBFont: ObservableObject {
         // Create
         if filePath.count > 0 {
             self.fileUrl = URL(fileURLWithPath: filePath)
-        } 
+        }
         createCTFont()
         extractFontInfo()
-        /*
-        fileWatcher.stopWatchingForChanges()
-        if filePath.count > 0 {
-            fileWatcher.watchForChangesInFileAtUrl(fileUrl: URL(fileURLWithPath: filePath))
-        }
-        // Notify change when fileWatcher, which is a nested ObservableObject, changes
-        anyCancellable = fileWatcher.objectWillChange.sink { [weak self] (_) in
-            print("fileWatcher: sending objectWillChange for file \(self!.fileUrl!)")
-            self?.objectWillChange.send()
-        } */
     }
     
     func reloadFont() {
@@ -284,8 +259,8 @@ class HBFont: ObservableObject {
         // Also get the glyph count
         glyphCount          = ctFont == nil ? 0 : CTFontGetGlyphCount(ctFont!)
     }
-    
-    /*
+
+/*
     private func getSupportedScripts() {
         // There are no APIs for getting the supported scripts through CT.
         // Only getting supported languages is available.
@@ -364,7 +339,8 @@ class HBFont: ObservableObject {
                 print("Error parsig JSON for OT Tables \(error.localizedDescription)")
             }
         }
-    } */
+    }
+*/
     
     private func getSupportedLanguages() {
         if ctFont == nil {
@@ -386,20 +362,6 @@ class HBFont: ObservableObject {
         supportedLanguages.sort { (lhs, rhs) -> Bool in
             return String(!rhs.selected) + rhs.langName > String(!lhs.selected) + lhs.langName
         }
-    }
-    
-    func getHBFontData() -> HBFontData? {
-        if fileUrl == nil {
-            return nil
-        }
-        
-        var hbFontData: HBFontData?
-        
-        fileUrl!.withUnsafeFileSystemRepresentation { cStr in
-            hbFontData = HBFontData(pathAsCString: cStr!)
-        }
-        
-        return hbFontData
     }
     
     func setLanguageAsSelected(langName:String) {
@@ -538,12 +500,12 @@ class HBFont: ObservableObject {
             return stringLayoutData
         }
         else {
-            if selectedShaper == Hibizcus.Shaper.CoreText {
+            //if selectedShaper == Hibizcus.Shaper.CoreText {
                 stringLayoutData = getStringLayoutDataWithCoreText(forText: forText)
-            }
-            else {
-                stringLayoutData = getStringLayoutDataWithHarfbuzz(forText: forText)
-            }
+            //}
+            //else {
+            //    stringLayoutData = getStringLayoutDataWithHarfbuzz(forText: forText)
+            //}
         }
         
         return stringLayoutData
@@ -650,6 +612,7 @@ class HBFont: ObservableObject {
         return stringLayoutData
     }
     
+    /*
     private func getStringLayoutDataWithHarfbuzz(forText: String) -> StringLayoutData {
         let stringLayoutData = StringLayoutData()
         //print("Getting layout data for \(forText) with \(fileUrl?.lastPathComponent ?? "") using Harfbuzz")
@@ -771,6 +734,7 @@ class HBFont: ObservableObject {
             metrics.upem        = (hbMetrics!["upem"] as! Float)
         }
     }
+ */
 }
 
 extension Double {
@@ -779,4 +743,5 @@ extension Double {
         return (self * divisor).rounded() / divisor
     }
 }
+
 
