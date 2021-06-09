@@ -14,14 +14,14 @@ struct HBGlyphView: View {
     @EnvironmentObject var fiModel: FIModel
 
     let scale: CGFloat
-    let gridItem: HBGridItem
-    //let gridItems: [HBGridItem]
-    //var currIndex: Int
+    //let gridItems[currIndex]: HBGridItem
+    let gridItems: [HBGridItem]
+    @State var currIndex: Int
     
     var body: some View {
         VStack {
             ZStack {
-                Text((gridItem.type == HBGridItemItemType.Glyph ? glyphItemLabel() : gridItem.text) ?? "")
+                Text((gridItems[currIndex].type == HBGridItemItemType.Glyph ? glyphItemLabel() : gridItems[currIndex].text) ?? "")
                     .font(.title)
                     .padding(.horizontal, 15)
                     .padding(.top, 15)
@@ -41,8 +41,8 @@ struct HBGlyphView: View {
                     
                     // Copy button - only for clusters and words.
                     // TODO: Glyphs only if there's a unicode value
-                    if gridItem.type != HBGridItemItemType.Glyph && gridItem.text != nil {
-                        Button(action: { copyTextToClipboard(textToCopy: gridItem.text!) }, label: {
+                    if gridItems[currIndex].type != HBGridItemItemType.Glyph && gridItems[currIndex].text != nil {
+                        Button(action: { copyTextToClipboard(textToCopy: gridItems[currIndex].text!) }, label: {
                             Image(systemName: "doc.on.doc")
                         })
                         .font(.system(size: 20))
@@ -50,10 +50,10 @@ struct HBGlyphView: View {
                         .padding(.bottom, 0)
                         .padding(.horizontal, 10)
                         .buttonStyle(PlainButtonStyle())
-                        .help("Copy \(gridItem.text!) to clipboard")
+                        .help("Copy \(gridItems[currIndex].text!) to clipboard")
                         
                         // Open in String Viewer
-                        Button(action: { openTextInStringViewer(text: gridItem.text!) }, label: {
+                        Button(action: { openTextInStringViewer(text: gridItems[currIndex].text!) }, label: {
                             Image(systemName: "rectangle.and.text.magnifyingglass")
                         })
                         .font(.system(size: 20))
@@ -61,7 +61,7 @@ struct HBGlyphView: View {
                         .padding(.bottom, 0)
                         .padding(.horizontal, 10)
                         .buttonStyle(PlainButtonStyle())
-                        .help("Open \(gridItem.text!) in StringViewer")
+                        .help("Open \(gridItems[currIndex].text!) in StringViewer")
                     }
                     else {
                         Text(" ")
@@ -71,14 +71,16 @@ struct HBGlyphView: View {
             Divider()
             
             VStack {
-                HBGridCellViewRepresentable(wordItem: gridItem, scale: scale)
-                    .frame(width: max((gridItem.width[0] * scale * 1.2), 800), height: 600, alignment: .center)
+                HBGridCellViewRepresentable(wordItem: gridItems[currIndex], scale: scale)
+                    .frame(width: max((gridItems[currIndex].width[0] * scale * 1.2), 800), height: 600, alignment: .center)
                 
                 Divider()
             
                 HStack {
                     Button("Prev") {
-                        print("I should show the previous item")
+                        if currIndex > 0 {
+                            currIndex -= 1
+                        }
                     }
                     Spacer()
                     Button("Done") {
@@ -86,7 +88,9 @@ struct HBGlyphView: View {
                     }
                     Spacer()
                     Button("Next") {
-                        print("I should show the next item")
+                        if currIndex < gridItems.count - 1 {
+                            currIndex += 1
+                        }
                     }
                 }
             }
@@ -97,11 +101,11 @@ struct HBGlyphView: View {
     }
     
     func glyphItemLabel() -> String {
-        if gridItem.uniLabel.count > 0 {
-            return "\(gridItem.label) - \(gridItem.uniLabel)"
+        if gridItems[currIndex].uniLabel.count > 0 {
+            return "\(gridItems[currIndex].label) - \(gridItems[currIndex].uniLabel)"
         }
         
-        return gridItem.label
+        return gridItems[currIndex].label
     }
     
     func openTextInStringViewer(text: String) {

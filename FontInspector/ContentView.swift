@@ -92,7 +92,7 @@ struct ContentView: View, DropDelegate {
                                 })
                                 .sheet(isPresented: $showGlyphView, onDismiss: glyphViewDismissed) {
                                     HBGlyphView(scale: tappedItem.type == .Word ? 4.0 : 6.0,
-                                                gridItem: tappedItem)
+                                                gridItems: hbGridItems, currIndex: hbGridItems.firstIndex(of: tappedItem) ?? 0)
                                 }
                             
                         }
