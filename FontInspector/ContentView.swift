@@ -8,10 +8,11 @@
 import SwiftUI
 
 class FIModel: ObservableObject {
-    @Published var hbFont1 = HBFont(filePath: "", fontSize: 40)
-    
+    @Published var projectName      = ""
+    @Published var hbFont1          = HBFont(filePath: "", fontSize: 40)
+    @Published var hbStringViewText = ""
     // Holds the last updated timestamp. Used to force change the value for UI updates
-    @Published var lastUpdated = ""
+    @Published var lastUpdated      = ""
     func refresh() {
         self.lastUpdated = NSDate().timeIntervalSince1970.debugDescription
     }
@@ -110,6 +111,13 @@ struct ContentView: View, DropDelegate {
                 fiModel.refresh()
             }
             .toolbar {
+                // Toggle sidebar
+                ToolbarItem(placement: .navigation) {
+                    Button(action: toggleLeftSidebar, label: {
+                        Image(systemName: "sidebar.left")
+                    })
+                }
+                // Button to fire second view
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
                         if let url = URL(string: "FontInspector://secondview") {
@@ -226,4 +234,9 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(document: .constant(FontInspectorAppDocument()))
     }
+}
+
+// Toggle Left Sidebar
+func toggleLeftSidebar() {
+    NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
 }
