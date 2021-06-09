@@ -110,25 +110,7 @@ struct ContentView: View, DropDelegate {
                 refreshGlyphsInFonts()
                 fiModel.refresh()
             }
-            .toolbar {
-                // Toggle sidebar
-                ToolbarItem(placement: .navigation) {
-                    Button(action: toggleLeftSidebar, label: {
-                        Image(systemName: "sidebar.left")
-                    })
-                }
-                // Button to fire second view
-                ToolbarItem(placement: ToolbarItemPlacement.automatic) {
-                    Button(action: {
-                        if let url = URL(string: "FontInspector://secondview") {
-                            openURL(url)
-                        }
-                    }, label: {
-                        Image(systemName: "rectangle.3.offgrid")
-                    })
-                }
-            }
-            
+
             /*
             HStack (alignment: .top) {
                 VStack(alignment: .leading) {
@@ -139,6 +121,24 @@ struct ContentView: View, DropDelegate {
             .padding(.vertical, 20)
             .frame(minWidth: 200, idealWidth: 220, maxWidth: 240)
              */
+        }
+        .toolbar {
+            // Toggle sidebar
+            ToolbarItem(placement: .navigation) {
+                Button(action: toggleLeftSidebar, label: {
+                    Image(systemName: "sidebar.left")
+                })
+            }
+            // Button to fire second view
+            ToolbarItem(placement: ToolbarItemPlacement.automatic) {
+                Button(action: {
+                    if let url = URL(string: "FontInspector://stringview") {
+                        openURL(url)
+                    }
+                }, label: {
+                    Image(systemName: "rectangle.3.offgrid")
+                })
+            }
         }
     }
     

@@ -17,9 +17,11 @@ struct FontInspectorApp: App {
             ContentView(document: file.$document).environmentObject(fiModel)
         }
         
-        WindowGroup("SecondWindow") {
-            HBGlyphView(scale: 0, gridItem: HBGridItem()).environmentObject(fiModel)
+        WindowGroup("StringView") {
+            HBStringView()
+                .environmentObject(fiModel)
+                .handlesExternalEvents(preferring: Set(arrayLiteral: "stringview"), allowing: Set(arrayLiteral: "*"))
         }
-        .handlesExternalEvents(matching: Set(arrayLiteral: "secondview"))
+        .handlesExternalEvents(matching: Set(arrayLiteral: "stringview"))
     }
 }

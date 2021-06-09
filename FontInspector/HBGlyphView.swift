@@ -74,9 +74,18 @@ struct HBGlyphView: View {
                 
                 Divider()
             
-                
-                Button("Done") {
-                    presentationMode.wrappedValue.dismiss()
+                HStack {
+                    Button("Prev") {
+                        print("I should show the previous item")
+                    }
+                    Spacer()
+                    Button("Done") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    Spacer()
+                    Button("Next") {
+                        print("I should show the next item")
+                    }
                 }
             }
             .padding(.horizontal, 10)
@@ -94,9 +103,9 @@ struct HBGlyphView: View {
     }
     
     func openTextInStringViewer(text: String) {
-        if let url = URL(string: "Hibizcus://stringview") {
+        if let url = URL(string: "FontInspector://stringview") {
             // Open the StringViewer
-            //hbProject.hbStringViewText = text
+            fiModel.hbStringViewText = text
             openURL(url)
             // Close the view
             presentationMode.wrappedValue.dismiss()

@@ -31,7 +31,6 @@
 		0094A19D2671037400DD4AB3 /* HBGridCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094A19C2671037400DD4AB3 /* HBGridCellView.swift */; };
 		0094A19F267105A100DD4AB3 /* HBFontData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094A19E267105A100DD4AB3 /* HBFontData.swift */; };
 		0094A1A126710C7E00DD4AB3 /* HBSidebarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094A1A026710C7E00DD4AB3 /* HBSidebarFont.swift */; };
-		0094A1A32671114600DD4AB3 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094A1A22671114600DD4AB3 /* EditView.swift */; };
 		0094A1AA267111E700DD4AB3 /* HBStringLayoutViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094A1A5267111E700DD4AB3 /* HBStringLayoutViewRepresentable.swift */; };
 		0094A1AB267111E700DD4AB3 /* HBStringLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094A1A6267111E700DD4AB3 /* HBStringLayoutView.swift */; };
 		0094A1AC267111E700DD4AB3 /* HBStringSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094A1A7267111E700DD4AB3 /* HBStringSidebarView.swift */; };
@@ -314,7 +313,6 @@
 		0094A19C2671037400DD4AB3 /* HBGridCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridCellView.swift; sourceTree = "<group>"; };
 		0094A19E267105A100DD4AB3 /* HBFontData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBFontData.swift; sourceTree = "<group>"; };
 		0094A1A026710C7E00DD4AB3 /* HBSidebarFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBSidebarFont.swift; sourceTree = "<group>"; };
-		0094A1A22671114600DD4AB3 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		0094A1A5267111E700DD4AB3 /* HBStringLayoutViewRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HBStringLayoutViewRepresentable.swift; sourceTree = "<group>"; };
 		0094A1A6267111E700DD4AB3 /* HBStringLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HBStringLayoutView.swift; sourceTree = "<group>"; };
 		0094A1A7267111E700DD4AB3 /* HBStringSidebarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HBStringSidebarView.swift; sourceTree = "<group>"; };
@@ -350,7 +348,6 @@
 				004547092632988200601DB6 /* FontInspector.entitlements */,
 				0094A1A4267111E700DD4AB3 /* StringView */,
 				004547052632988200601DB6 /* Preview Content */,
-				0094A1A22671114600DD4AB3 /* EditView.swift */,
 			);
 			path = FontInspector;
 			sourceTree = "<group>";
@@ -838,7 +835,6 @@
 				0094A1AA267111E700DD4AB3 /* HBStringLayoutViewRepresentable.swift in Sources */,
 				0094A18E2670FD2000DD4AB3 /* hb_shaper_cpp.cpp in Sources */,
 				0094A1822670FD2000DD4AB3 /* HibizcusCppBridge.mm in Sources */,
-				0094A1A32671114600DD4AB3 /* EditView.swift in Sources */,
 				0094A19B2671035200DD4AB3 /* HBGridCellViewRepresentable.swift in Sources */,
 				0094A1AB267111E700DD4AB3 /* HBStringLayoutView.swift in Sources */,
 				004547192632A88500601DB6 /* ContentView.swift in Sources */,
