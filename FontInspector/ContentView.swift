@@ -9,6 +9,12 @@ import SwiftUI
 
 class FIModel: ObservableObject {
     @Published var hbFont1 = HBFont(filePath: "", fontSize: 40)
+    
+    // Holds the last updated timestamp. Used to force change the value for UI updates
+    @Published var lastUpdated = ""
+    func refresh() {
+        self.lastUpdated = NSDate().timeIntervalSince1970.debugDescription
+    }
 }
 
 enum HBGridItemItemType {
@@ -51,67 +57,80 @@ struct ContentView: View, DropDelegate {
     @State var tappedItem               = HBGridItem()
     
     var body: some View {
-        VStack {
-
-            ScrollView {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: maxCellWidth))], spacing: 10) {
-                    ForEach(hbGridItems, id: \.self) { hbGridItem in
-                        HBGridCellViewRepresentable(wordItem: hbGridItem, scale: 1.0)
-                            .frame(width: maxCellWidth, height: 92, alignment: .center)
-                            .border(Color.primary.opacity(0.7), width: tappedItem==hbGridItem ? 1 : 0)
-                            .gesture(TapGesture(count: 2).onEnded {
-                                // UI Update should be done on main thread
-                                DispatchQueue.main.async {
-                                    tappedItem = hbGridItem
-                                }
-                                print("double clicked on item \(hbGridItem)")
-                                doubleClicked(clickedItem: hbGridItem)
-                            })
-                            .simultaneousGesture(TapGesture().onEnded {
-                                DispatchQueue.main.async {
-                                    tappedItem = hbGridItem
-                                }
-                                print("single clicked on item \(hbGridItem)")
-                            })
-                            .sheet(isPresented: $showGlyphView, onDismiss: glyphViewDismissed) {
-                                HBGlyphView(scale: tappedItem.type == .Word ? 4.0 : 6.0,
-                                            gridItem: tappedItem)
-                            }
-                        
-                    }
+        NavigationView() {
+            // Sidebar
+            HStack (alignment: .top) {
+                VStack(alignment: .leading) {
+                    HBSidebarFont()
+                    Spacer()
                 }
-                .padding(.horizontal)
-                .background(Color(NSColor.textBackgroundColor))
             }
-            
-            
-        }
-        .padding()
-        .onDrop(of: ["public.truetype-ttf-font", "public.file-url"], delegate: self)
-        .onAppear {
-            if document.fiProject.fontFile1Bookmark != nil {
-                fiModel.hbFont1.loadFontWith(fontBookmark: document.fiProject.fontFile1Bookmark!, fontSize: 40)
-            }
-            /*
-            if projectFileUrl != nil {
-                hbProject.projectName = projectFileUrl!.lastPathComponent
-            }
-            clusterViewModel.currentScript = hbProject.hbFont1.selectedScript
-            glyphItems.removeAll()
-            hbProject.refresh()
-             */
-            refreshGlyphsInFonts()
-        }
-        .toolbar {
-            ToolbarItem(placement: ToolbarItemPlacement.automatic) {
-                Button(action: {
-                    if let url = URL(string: "FontInspector://secondview") {
-                        openURL(url)
+            .padding(.vertical, 20)
+            .frame(minWidth: 200, idealWidth: 220, maxWidth: 240)
+            // Main Content
+            VStack {
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: maxCellWidth))], spacing: 10) {
+                        ForEach(hbGridItems, id: \.self) { hbGridItem in
+                            HBGridCellViewRepresentable(wordItem: hbGridItem, scale: 1.0)
+                                .frame(width: maxCellWidth, height: 92, alignment: .center)
+                                .border(Color.primary.opacity(0.7), width: tappedItem==hbGridItem ? 1 : 0)
+                                .gesture(TapGesture(count: 2).onEnded {
+                                    // UI Update should be done on main thread
+                                    DispatchQueue.main.async {
+                                        tappedItem = hbGridItem
+                                    }
+                                    print("double clicked on item \(hbGridItem)")
+                                    doubleClicked(clickedItem: hbGridItem)
+                                })
+                                .simultaneousGesture(TapGesture().onEnded {
+                                    DispatchQueue.main.async {
+                                        tappedItem = hbGridItem
+                                    }
+                                    print("single clicked on item \(hbGridItem)")
+                                })
+                                .sheet(isPresented: $showGlyphView, onDismiss: glyphViewDismissed) {
+                                    HBGlyphView(scale: tappedItem.type == .Word ? 4.0 : 6.0,
+                                                gridItem: tappedItem)
+                                }
+                            
+                        }
                     }
-                }, label: {
-                    Image(systemName: "rectangle.3.offgrid")
-                })
+                    .padding(.horizontal)
+                    .background(Color(NSColor.textBackgroundColor))
+                }
             }
+            .padding()
+            .onDrop(of: ["public.truetype-ttf-font", "public.file-url"], delegate: self)
+            .onAppear {
+                if document.fiProject.fontFile1Bookmark != nil {
+                    fiModel.hbFont1.loadFontWith(fontBookmark: document.fiProject.fontFile1Bookmark!, fontSize: 40)
+                }
+                refreshGlyphsInFonts()
+                fiModel.refresh()
+            }
+            .toolbar {
+                ToolbarItem(placement: ToolbarItemPlacement.automatic) {
+                    Button(action: {
+                        if let url = URL(string: "FontInspector://secondview") {
+                            openURL(url)
+                        }
+                    }, label: {
+                        Image(systemName: "rectangle.3.offgrid")
+                    })
+                }
+            }
+            
+            /*
+            HStack (alignment: .top) {
+                VStack(alignment: .leading) {
+                    HBSidebarFont()
+                    Spacer()
+                }
+            }
+            .padding(.vertical, 20)
+            .frame(minWidth: 200, idealWidth: 220, maxWidth: 240)
+             */
         }
     }
     
@@ -121,11 +140,7 @@ struct ContentView: View, DropDelegate {
         if fiModel.hbFont1.fileUrl != nil {
             // Easier to get glyphname in a CGFont
             let cgFont = CTFontCopyGraphicsFont(fiModel.hbFont1.ctFont!, nil)
-            
             let fontData1   = fiModel.hbFont1.getHBFontData()
-            //let fontData2   = hbProject.hbFont2.getHBFontData()
-            //let cgFont2     = hbProject.hbFont2.fileUrl != nil ? CTFontCopyGraphicsFont(hbProject.hbFont2.ctFont!, nil) : nil
-            
             // Get the glyph information and set the width of the widest glyph as the maxCellWidth
             glyphCellWidth  = 100
             let scale       = (Hibizcus.FontScale / (2048/fiModel.hbFont1.metrics.upem)) * (192/40)
@@ -145,25 +160,14 @@ struct ContentView: View, DropDelegate {
                     //var hasDiff     = false // no difference
                     let widthDiff   = false
                     let glyfDiff    = false
-                    /*
-                    if (fontData2 != nil) {
-                        let fd2     = fontData2!.getGlyfData(forGlyphName: gName)
-                        glyfDiff    = fd1?.glyf != fd2?.glyf
-                        let gId2    = cgFont2?.getGlyphWithGlyphName(name: gName as CFString)
-                        wordItem.glyphIds[1] = gId2 != nil ? CGGlyph(gId2!) : kCGFontIndexInvalid
-                        let adv2    = fd2?.width ?? 0
-                        wordItem.width[1] = CGFloat(Float(adv2)/scale)
-                        widthDiff   = abs(width - wordItem.width[1]) > 0.01
-                    } */
+                    
                     //wordItem.hasDiff  = hasDiff
                     wordItem.diffGlyf   = glyfDiff
                     wordItem.diffWidth  = widthDiff
                     glyphCellWidth = max(width, glyphCellWidth)
                     DispatchQueue.main.async {
                         hbGridItems.append(wordItem)
-                        //glyphItems.append(wordItem)
                         maxCellWidth = glyphCellWidth
-                        //print("Grid now has \(hbGridItems.count) glyphs")
                     }
                 }
             }
@@ -187,6 +191,7 @@ struct ContentView: View, DropDelegate {
                 DispatchQueue.main.async {
                     fiModel.hbFont1.fontSize = 40
                     fiModel.hbFont1.setFontFile(filePath: url.path)
+                    fiModel.refresh()
                     // Save the bookmark in document for future use
                     document.fiProject.fontFile1Bookmark = securityScopedBookmark(ofUrl: url)
                     refreshGlyphsInFonts()

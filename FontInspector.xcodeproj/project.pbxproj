@@ -30,6 +30,7 @@
 		0094A19B2671035200DD4AB3 /* HBGridCellViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094A19A2671035200DD4AB3 /* HBGridCellViewRepresentable.swift */; };
 		0094A19D2671037400DD4AB3 /* HBGridCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094A19C2671037400DD4AB3 /* HBGridCellView.swift */; };
 		0094A19F267105A100DD4AB3 /* HBFontData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094A19E267105A100DD4AB3 /* HBFontData.swift */; };
+		0094A1A126710C7E00DD4AB3 /* HBSidebarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094A1A026710C7E00DD4AB3 /* HBSidebarFont.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -306,6 +307,7 @@
 		0094A19A2671035200DD4AB3 /* HBGridCellViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridCellViewRepresentable.swift; sourceTree = "<group>"; };
 		0094A19C2671037400DD4AB3 /* HBGridCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridCellView.swift; sourceTree = "<group>"; };
 		0094A19E267105A100DD4AB3 /* HBFontData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBFontData.swift; sourceTree = "<group>"; };
+		0094A1A026710C7E00DD4AB3 /* HBSidebarFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBSidebarFont.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -702,6 +704,7 @@
 			children = (
 				0094A19A2671035200DD4AB3 /* HBGridCellViewRepresentable.swift */,
 				0094A19C2671037400DD4AB3 /* HBGridCellView.swift */,
+				0094A1A026710C7E00DD4AB3 /* HBSidebarFont.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -810,6 +813,7 @@
 				004547192632A88500601DB6 /* ContentView.swift in Sources */,
 				0094A19F267105A100DD4AB3 /* HBFontData.swift in Sources */,
 				004546FE2632987F00601DB6 /* FontInspectorApp.swift in Sources */,
+				0094A1A126710C7E00DD4AB3 /* HBSidebarFont.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
