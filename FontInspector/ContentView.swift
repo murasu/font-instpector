@@ -11,26 +11,80 @@ class FIModel: ObservableObject {
     @Published var hbFont1 = HBFont(filePath: "", fontSize: 40)
 }
 
-struct ContentView: View {
+enum HBGridItemItemType {
+    case Glyph, Cluster, Word, Number
+}
+
+struct HBGridItem : Hashable {
+    var type: HBGridItemItemType?
+    var text: String?
+    var id          = UUID()                    // Unique ID for this item
+    var glyphIds    = [kCGFontIndexInvalid,     // For Font1 and Font2
+                       kCGFontIndexInvalid]
+    var width       = [CGFloat(0),
+                       CGFloat(0)]
+    var height      = CGFloat(0)                // The rest of the data is for Font1 only
+    var lsb         = CGFloat(0)
+    var rsb         = CGFloat(0)
+    var label       = ""                        // Stores the glyph name in the case of font comparison
+    var uniLabel    = ""                        // Label that holds the unicode value
+    var diffWidth   = false
+    var diffGlyf    = false
+    var diffLayout  = false
+    var colorGlyphs = false
+    func hasDiff() -> Bool {
+        return diffWidth || diffGlyf || diffLayout
+    }
+}
+
+struct ContentView: View, DropDelegate {
     @Environment(\.openURL) var openURL
     @EnvironmentObject var fiModel: FIModel
     @Binding var document: FontInspectorAppDocument
 
+    
+    @State var hbGridItems              = [HBGridItem]()
+    @State var minCellWidth: CGFloat    = 100
+    @State var maxCellWidth: CGFloat    = 100
+    @State var glyphCellWidth:CGFloat   = 100
+    @State var showGlyphView            = false
+    @State var tappedItem               = HBGridItem()
+    
     var body: some View {
         VStack {
-            /*
-            TextField("", text: $fiModel.title)
-                .font(.title)
-                .padding()
-            TextField("", text: $fiModel.filename)
-                .font(.title)
-                .padding()
-            Divider()
-            Text(fiModel.title)
-                .padding()
-            Text(fiModel.filename)
-                .padding()
-             */
+
+            ScrollView {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: maxCellWidth))], spacing: 10) {
+                    ForEach(hbGridItems, id: \.self) { hbGridItem in
+                        HBGridCellViewRepresentable(wordItem: hbGridItem, scale: 1.0)
+                            .frame(width: maxCellWidth, height: 92, alignment: .center)
+                            .border(Color.primary.opacity(0.7), width: tappedItem==hbGridItem ? 1 : 0)
+                            .gesture(TapGesture(count: 2).onEnded {
+                                // UI Update should be done on main thread
+                                DispatchQueue.main.async {
+                                    tappedItem = hbGridItem
+                                }
+                                print("double clicked on item \(hbGridItem)")
+                                doubleClicked(clickedItem: hbGridItem)
+                            })
+                            .simultaneousGesture(TapGesture().onEnded {
+                                DispatchQueue.main.async {
+                                    tappedItem = hbGridItem
+                                }
+                                print("single clicked on item \(hbGridItem)")
+                            })
+                            .sheet(isPresented: $showGlyphView, onDismiss: glyphViewDismissed) {
+                                HBGlyphView(scale: tappedItem.type == .Word ? 4.0 : 6.0,
+                                            gridItem: tappedItem)
+                            }
+                        
+                    }
+                }
+                .padding(.horizontal)
+                .background(Color(NSColor.textBackgroundColor))
+            }
+            
+            
         }
         .padding()
         .toolbar {
@@ -147,6 +201,14 @@ struct ContentView: View {
         
         return
     } */
+    
+    func doubleClicked(clickedItem: HBGridItem) {
+        showGlyphView = tappedItem == clickedItem
+    }
+    
+    func glyphViewDismissed() {
+        showGlyphView = false
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {

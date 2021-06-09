@@ -12,7 +12,7 @@
 		004547042632988200601DB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 004547032632988200601DB6 /* Assets.xcassets */; };
 		004547072632988200601DB6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 004547062632988200601DB6 /* Preview Assets.xcassets */; };
 		004547192632A88500601DB6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004547012632987F00601DB6 /* ContentView.swift */; };
-		0045471F2632A94100601DB6 /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0045471E2632A94100601DB6 /* SecondView.swift */; };
+		0045471F2632A94100601DB6 /* HBGlyphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0045471E2632A94100601DB6 /* HBGlyphView.swift */; };
 		008A6E422670E13D0018179E /* HBFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A6E412670E13D0018179E /* HBFont.swift */; };
 		008A6E442670E1760018179E /* Hibizcus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A6E432670E1760018179E /* Hibizcus.swift */; };
 		008A6E462670E2070018179E /* FontMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A6E452670E2070018179E /* FontMetrics.swift */; };
@@ -27,6 +27,8 @@
 		0094A18E2670FD2000DD4AB3 /* hb_shaper_cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0094A17D2670FD2000DD4AB3 /* hb_shaper_cpp.cpp */; };
 		0094A1962670FF0100DD4AB3 /* BinarySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0094A17C2670FD2000DD4AB3 /* BinarySwift.framework */; };
 		0094A1972670FF0100DD4AB3 /* BinarySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0094A17C2670FD2000DD4AB3 /* BinarySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0094A19B2671035200DD4AB3 /* HBGridCellViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094A19A2671035200DD4AB3 /* HBGridCellViewRepresentable.swift */; };
+		0094A19D2671037400DD4AB3 /* HBGridCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094A19C2671037400DD4AB3 /* HBGridCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,7 +54,7 @@
 		004547062632988200601DB6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		004547082632988200601DB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		004547092632988200601DB6 /* FontInspector.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FontInspector.entitlements; sourceTree = "<group>"; };
-		0045471E2632A94100601DB6 /* SecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
+		0045471E2632A94100601DB6 /* HBGlyphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGlyphView.swift; sourceTree = "<group>"; };
 		008A6E412670E13D0018179E /* HBFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBFont.swift; sourceTree = "<group>"; };
 		008A6E432670E1760018179E /* Hibizcus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hibizcus.swift; sourceTree = "<group>"; };
 		008A6E452670E2070018179E /* FontMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontMetrics.swift; sourceTree = "<group>"; };
@@ -300,6 +302,8 @@
 		0094A17F2670FD2000DD4AB3 /* otfcc_read.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = otfcc_read.h; sourceTree = "<group>"; };
 		0094A1802670FD2000DD4AB3 /* HibizcusCppBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HibizcusCppBridge.h; sourceTree = "<group>"; };
 		0094A1942670FE0700DD4AB3 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		0094A19A2671035200DD4AB3 /* HBGridCellViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridCellViewRepresentable.swift; sourceTree = "<group>"; };
+		0094A19C2671037400DD4AB3 /* HBGridCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +323,7 @@
 		004546FC2632987F00601DB6 /* FontInspector */ = {
 			isa = PBXGroup;
 			children = (
+				0094A1992671032C00DD4AB3 /* CustomViews */,
 				008A6E402670E11B0018179E /* Font */,
 				004546FD2632987F00601DB6 /* FontInspectorApp.swift */,
 				004546FF2632987F00601DB6 /* FontInspectorAppDocument.swift */,
@@ -327,7 +332,7 @@
 				004547082632988200601DB6 /* Info.plist */,
 				004547092632988200601DB6 /* FontInspector.entitlements */,
 				004547052632988200601DB6 /* Preview Content */,
-				0045471E2632A94100601DB6 /* SecondView.swift */,
+				0045471E2632A94100601DB6 /* HBGlyphView.swift */,
 			);
 			path = FontInspector;
 			sourceTree = "<group>";
@@ -689,6 +694,15 @@
 			path = BinarySwift;
 			sourceTree = "<group>";
 		};
+		0094A1992671032C00DD4AB3 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				0094A19A2671035200DD4AB3 /* HBGridCellViewRepresentable.swift */,
+				0094A19C2671037400DD4AB3 /* HBGridCellView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		00DDB47425E6DD3D002FC0B4 = {
 			isa = PBXGroup;
 			children = (
@@ -782,12 +796,14 @@
 				0094A1832670FD2000DD4AB3 /* otfcc_read.c in Sources */,
 				008A6E442670E1760018179E /* Hibizcus.swift in Sources */,
 				008A6E462670E2070018179E /* FontMetrics.swift in Sources */,
+				0094A19D2671037400DD4AB3 /* HBGridCellView.swift in Sources */,
 				004547002632987F00601DB6 /* FontInspectorAppDocument.swift in Sources */,
 				008A6E422670E13D0018179E /* HBFont.swift in Sources */,
-				0045471F2632A94100601DB6 /* SecondView.swift in Sources */,
+				0045471F2632A94100601DB6 /* HBGlyphView.swift in Sources */,
 				0094A1812670FD2000DD4AB3 /* hb_tracer.c in Sources */,
 				0094A18E2670FD2000DD4AB3 /* hb_shaper_cpp.cpp in Sources */,
 				0094A1822670FD2000DD4AB3 /* HibizcusCppBridge.mm in Sources */,
+				0094A19B2671035200DD4AB3 /* HBGridCellViewRepresentable.swift in Sources */,
 				004547192632A88500601DB6 /* ContentView.swift in Sources */,
 				004546FE2632987F00601DB6 /* FontInspectorApp.swift in Sources */,
 			);

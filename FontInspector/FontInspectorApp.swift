@@ -18,7 +18,7 @@ struct FontInspectorApp: App {
         }
         
         WindowGroup("SecondWindow") {
-            SecondView().environmentObject(fiModel)
+            HBGlyphView(scale: 0, gridItem: HBGridItem()).environmentObject(fiModel)
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: "secondview"))
     }
