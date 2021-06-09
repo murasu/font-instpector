@@ -132,6 +132,7 @@ struct ContentView: View, DropDelegate {
             // Button to fire second view
             ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                 Button(action: {
+                    fiModel.hbStringViewText = tappedItem.label
                     if let url = URL(string: "FontInspector://stringview") {
                         openURL(url)
                     }
@@ -222,6 +223,8 @@ struct ContentView: View, DropDelegate {
     }
     
     func doubleClicked(clickedItem: HBGridItem) {
+        let tappedIndex = hbGridItems.firstIndex(of: tappedItem)
+        print("Tapped item \(tappedIndex)")
         showGlyphView = tappedItem == clickedItem
     }
     

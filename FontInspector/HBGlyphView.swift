@@ -15,6 +15,8 @@ struct HBGlyphView: View {
 
     let scale: CGFloat
     let gridItem: HBGridItem
+    //let gridItems: [HBGridItem]
+    //var currIndex: Int
     
     var body: some View {
         VStack {
