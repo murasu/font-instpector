@@ -35,7 +35,7 @@ struct ContentView: View {
         .toolbar {
             ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                 Button(action: {
-                    if let url = URL(string: "TwoWindowApp://secondview") {
+                    if let url = URL(string: "FontInspector://secondview") {
                         openURL(url)
                     }
                 }, label: {
@@ -44,7 +44,7 @@ struct ContentView: View {
             }
         }
     }
-    
+    /*
     func performDrop(info: DropInfo) -> Bool {
         guard info.hasItemsConforming(to: ["public.file-url"]) else {
             return false
@@ -134,7 +134,7 @@ struct ContentView: View {
         }
         
         return
-    }
+    } */
 }
 
 struct ContentView_Previews: PreviewProvider {
