@@ -330,11 +330,11 @@
 				004546FD2632987F00601DB6 /* FontInspectorApp.swift */,
 				004546FF2632987F00601DB6 /* FontInspectorAppDocument.swift */,
 				004547012632987F00601DB6 /* ContentView.swift */,
+				0045471E2632A94100601DB6 /* HBGlyphView.swift */,
 				004547032632988200601DB6 /* Assets.xcassets */,
 				004547082632988200601DB6 /* Info.plist */,
 				004547092632988200601DB6 /* FontInspector.entitlements */,
 				004547052632988200601DB6 /* Preview Content */,
-				0045471E2632A94100601DB6 /* HBGlyphView.swift */,
 			);
 			path = FontInspector;
 			sourceTree = "<group>";

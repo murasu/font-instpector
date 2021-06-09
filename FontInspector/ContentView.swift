@@ -87,6 +87,21 @@ struct ContentView: View, DropDelegate {
             
         }
         .padding()
+        .onDrop(of: ["public.truetype-ttf-font", "public.file-url"], delegate: self)
+        .onAppear {
+            if document.fiProject.fontFile1Bookmark != nil {
+                fiModel.hbFont1.loadFontWith(fontBookmark: document.fiProject.fontFile1Bookmark!, fontSize: 40)
+            }
+            /*
+            if projectFileUrl != nil {
+                hbProject.projectName = projectFileUrl!.lastPathComponent
+            }
+            clusterViewModel.currentScript = hbProject.hbFont1.selectedScript
+            glyphItems.removeAll()
+            hbProject.refresh()
+             */
+            refreshGlyphsInFonts()
+        }
         .toolbar {
             ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                 Button(action: {
@@ -174,6 +189,7 @@ struct ContentView: View, DropDelegate {
                     fiModel.hbFont1.setFontFile(filePath: url.path)
                     // Save the bookmark in document for future use
                     document.fiProject.fontFile1Bookmark = securityScopedBookmark(ofUrl: url)
+                    refreshGlyphsInFonts()
                 }
             }
         }

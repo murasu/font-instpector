@@ -68,7 +68,7 @@ class HBGridCellView: NSView {
         let baseLine: CGFloat   = computeBaseLine(ctFont: ctFont1)
         let xHeight: CGFloat    = baseLine + CTFontGetXHeight(ctFont1)
         
-        let showDiff    = gridItem!.hasDiff() && hbFont2?.fileUrl != nil
+        let showDiff    = false //gridItem!.hasDiff() && hbFont2?.fileUrl != nil
         let borderColor = showDiff ? NSColor.systemRed.cgColor : NSColor.textColor.withAlphaComponent(0.2).cgColor
         let borderWidth = showDiff ? 2 : 1
         if scale > 1.0 {
@@ -90,11 +90,12 @@ class HBGridCellView: NSView {
         
         var theFonts:[CTFont] = [ctFont1]
         var theLayoutData:[StringLayoutData?] = [hbFont1?.getStringLayoutData(forText: gridItem?.text ?? "")]
+        /*
         if hbFont2 != nil && hbFont2!.fileUrl != nil {
             textColors  = [Hibizcus.FontColor.MainFontColor, Hibizcus.FontColor.CompareFontColor]
             theFonts.append(ctFont2)
             theLayoutData.append(hbFont2?.getStringLayoutData(forText: gridItem?.text ?? ""))
-        }
+        } */
         
         var colorIndex = 0
         var layoutDatum:StringLayoutData?
